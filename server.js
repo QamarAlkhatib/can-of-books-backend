@@ -48,12 +48,13 @@ function seedBookInfo(){
 
 // seedBookInfo();
 
-// localhost:3004/books
+// localhost:3004/books?email
 server.get('/',homeHandler);
 server.get('/books', getBooksHandler);
 
 function getBooksHandler(req,res){
-    bookModal.find({},function(error,allData){
+    let email2= req.query.email;
+    bookModal.find({email:email2},function(error,allData){
         if(error){
             console.log('Error with getting the data', error);
         }
