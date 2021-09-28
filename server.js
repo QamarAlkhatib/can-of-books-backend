@@ -31,7 +31,7 @@ function seedBookInfo(){
     const book2 = new bookModal({
         title: 'Don\'t Make me Think',
         description:'Don\'t Make Me Think is a book by Steve Krug about human–computer interaction and web usability. The book\'s premise is that a good software program or web site should let users accomplish their intended tasks as easily and directly as possible.',
-        email: 'qalkhatib0@gmail.com',
+        email: 'qalkhatibbb0@gmail.com',
         
     });
 
@@ -48,13 +48,13 @@ function seedBookInfo(){
 
 // seedBookInfo();
 
-// localhost:3004/books?email
+// localhost:3004/books
 server.get('/',homeHandler);
 server.get('/books', getBooksHandler);
 
 function getBooksHandler(req,res){
-    let email2= req.query.email;
-    bookModal.find({email:email2},function(error,allData){
+    
+    bookModal.find({},function(error,allData){
         if(error){
             console.log('Error with getting the data', error);
         }
