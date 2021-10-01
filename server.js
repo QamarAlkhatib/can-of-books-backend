@@ -13,14 +13,17 @@ server.use(express.json());
 
 mongoose.connect(`${process.env.MONGO_SERVER}`);
 
-const bookModal = require('./modules/BookDb.js')
-const { getBooksHandler, addBookHandler, deleteBookHandler,} = require("./modules/BookFunction.js");
+// const bookModal = require('./modules/BookDb.js')
+const { getBooksHandler, addBookHandler, deleteBookHandler,updateBookHandler } = require("./modules/BookFunction.js")
 
 // localhost:3004/books?email=
 server.get('/', homeHandler);
 server.get('/books', getBooksHandler);
 server.post('/addBook', addBookHandler);
 server.delete('/deleteBook', deleteBookHandler);
+server.put('/updateBook', updateBookHandler);
+
+
 
 
 function homeHandler(req, res) {

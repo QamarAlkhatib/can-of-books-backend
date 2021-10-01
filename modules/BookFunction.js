@@ -1,5 +1,7 @@
+'use strict'
 
 const bookModal = require('./BookDb.js')
+
 
 function getBooksHandler(req, res) {
 
@@ -61,4 +63,12 @@ function deleteBookHandler(req, res) {
     })
 }
 
-module.exports = {getBooksHandler,addBookHandler,deleteBookHandler};
+function updateBookHandler(req,res){
+    console.log('update',req.body);
+
+    let 
+
+
+    
+}
+module.exports = {getBooksHandler,addBookHandler,deleteBookHandler,updateBookHandler};

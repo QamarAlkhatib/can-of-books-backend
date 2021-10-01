@@ -1,3 +1,5 @@
+'use strict'
+
 const mongoose = require('mongoose')
 
 const bookSchema = new mongoose.Schema({
@@ -36,5 +38,7 @@ function seedBookInfo() {
     book2.save();
     book3.save();
 }
+
+// seedBookInfo();
 
 module.exports = bookModal;
