@@ -65,10 +65,6 @@ function deleteBookHandler(req, res) {
 
 function updateBookHandler(req,res){
     console.log('update',req.body);
-
-    let 
-
-
     
 }
 module.exports = {getBooksHandler,addBookHandler,deleteBookHandler,updateBookHandler};
