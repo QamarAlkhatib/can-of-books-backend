@@ -11,7 +11,7 @@ server.use(cors());
 // Middleware to decode any request body to json(with Post req)
 server.use(express.json());
 
-mongoose.connect(`${process.env.MONGO_SERVER}`);
+mongoose.connect(`${process.env.MONGO_SERVER_LOCALLY}`);
 
 // const bookModal = require('./modules/BookDb.js')
 const { getBooksHandler, addBookHandler, deleteBookHandler,updateBookHandler } = require("./modules/BookFunction.js")
@@ -22,8 +22,6 @@ server.get('/books', getBooksHandler);
 server.post('/addBook', addBookHandler);
 server.delete('/deleteBook', deleteBookHandler);
 server.put('/updateBook', updateBookHandler);
-
-
 
 
 function homeHandler(req, res) {

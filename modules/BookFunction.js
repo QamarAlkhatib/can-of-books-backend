@@ -19,7 +19,7 @@ function getBooksHandler(req, res) {
 
 // http://localhost:3004/addbook?email=${this.state.email}&title=${bookName}&description=${bookDescription}
 // http://localhost:3004/addbook
- function addBookHandler(req, res) {
+function addBookHandler(req, res) {
     console.log(req.body)
     let { email, title, description } = req.body;
     // way 1
@@ -31,18 +31,18 @@ function getBooksHandler(req, res) {
     // await newBook.save();
 
     // way 2 -create, (needs time) save and create at the same time
-     bookModal.create({ email, title, description }).then(()=>{
+    bookModal.create({ email, title, description }).then(() => {
 
-         bookModal.find({ email },(function (error, allData) {
-             if (error) {
-                 console.log('Error with getting the data', error);
-             }
-             else {
-                 console.log(allData);
-                 res.send(allData);
-             }
+        bookModal.find({ email }, (function (error, allData) {
+            if (error) {
+                console.log('Error with getting the data', error);
+            }
+            else {
+                console.log(allData);
+                res.send(allData);
+            }
         }))
-     })
+    })
 }
 
 // http://localhost:3004/deleteBook?bookId=${bookId}email=${this.state.email}
@@ -51,7 +51,7 @@ function deleteBookHandler(req, res) {
     let email = req.query.email;
 
     bookModal.deleteOne({ _id: bookId }).then(() => {
-        bookModal.find({ email },(function (error, allData) {
+        bookModal.find({ email }, (function (error, allData) {
             if (error) {
                 console.log('Error with getting the data', error);
             }
@@ -59,12 +59,30 @@ function deleteBookHandler(req, res) {
                 console.log(allData);
                 res.send(allData);
             }
-       }))
+        }))
     })
 }
 
-function updateBookHandler(req,res){
-    console.log('update',req.body);
-    
+function updateBookHandler(req, res) {
+    console.log('update', req.body);
+    let { bookId, title, description } = req.body;
+    bookModal.findByIdAndUpdate(bookId, { title, description }, (error, updatedData) => {
+        if (error) {
+            console.log('Error with updating the data', error);
+        }
+        else {
+            console.log(updatedData);
+            bookModal.find({ email }, (function (error, allData) {
+                if (error) {
+                    console.log('Error with getting the data', error);
+                }
+                else {
+                    console.log(allData);
+                    res.send(allData);
+                }
+            }))
+            res.send(updatedData);
+        }
+    })
 }
-module.exports = {getBooksHandler,addBookHandler,deleteBookHandler,updateBookHandler};
+module.exports = { getBooksHandler, addBookHandler, deleteBookHandler, updateBookHandler };
